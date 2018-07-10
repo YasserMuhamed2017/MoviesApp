@@ -43,6 +43,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     MovieIdAdapter movieIdAdapter;
     ListView listView;
     Button mFavoriteButton;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
