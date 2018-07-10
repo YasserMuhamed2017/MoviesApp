@@ -81,23 +81,16 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-//                    Uri currentPetUri = ContentUris.withAppendedId(MovieContract.MovieEntry.CONTENT_URI, Long.parseLong(id));
+                  Uri currentPetUri = ContentUris.withAppendedId(MovieContract.MovieEntry.CONTENT_URI, Long.parseLong(id));
 //
 //                    ContentValues contentValues = new ContentValues();
 //                    contentValues.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH, NetworkUtils.IMAGE_MOVIE_BASE_URL + dataExtracted.getPosterPath());
 //
 //                    getContentResolver().update(currentPetUri, contentValues ,null,null);
                   
-                    Context context = getActivity();
-                    SharedPreferences sharedPref = context.getSharedPreferences( getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-
-
-                    SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-                    editor.putString("text", mSaved.getText().toString());
-                    editor.putInt("selection-start", mSaved.getSelectionStart());
-                    editor.putInt("selection-end", mSaved.getSelectionEnd());
-                    editor.apply();
+                      SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Uri" , currentPetUri.toString());
+                    editor.commit();
                     
                 }
             });
