@@ -87,28 +87,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
 //                    contentValues.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH, NetworkUtils.IMAGE_MOVIE_BASE_URL + dataExtracted.getPosterPath());
 //
 //                    getContentResolver().update(currentPetUri, contentValues ,null,null);
-                    new AsyncTask<Void,Void,Void>(){
+                  
+                    Context context = getActivity();
+                    SharedPreferences sharedPref = context.getSharedPreferences( getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-                        @Override
-                        protected Void doInBackground(Void... voids) {
 
-                            ContentValues movieValues = new ContentValues();
-                            movieValues.put(MovieContract.MovieEntry.COLUMN_ID,
-                                    dataExtracted.getId());
-                            movieValues.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH , dataExtracted.getPosterPath());
 
-                            getContentResolver().insert(
-                                    MovieContract.MovieEntry.CONTENT_URI,
-                                    movieValues
-                            );
-                            return null;
-                        }
-
-                        @Override
-                        protected void onPostExecute(Void aVoid) {
-                            super.onPostExecute(aVoid);
-                        }
-                    };
+                    SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+                    editor.putString("text", mSaved.getText().toString());
+                    editor.putInt("selection-start", mSaved.getSelectionStart());
+                    editor.putInt("selection-end", mSaved.getSelectionEnd());
+                    editor.apply();
+                    
                 }
             });
         }
