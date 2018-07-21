@@ -82,16 +82,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                  Uri currentPetUri = ContentUris.withAppendedId(MovieContract.MovieEntry.CONTENT_URI, Long.parseLong(id));
-//
-//                    ContentValues contentValues = new ContentValues();
-//                    contentValues.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH, NetworkUtils.IMAGE_MOVIE_BASE_URL + dataExtracted.getPosterPath());
-//
-//                    getContentResolver().update(currentPetUri, contentValues ,null,null);
-                  
-                      SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Uri" , currentPetUri.toString());
-                    editor.commit();
+              
+
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH, NetworkUtils.IMAGE_MOVIE_BASE_URL + dataExtracted.getPosterPath());
+
+                    getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, contentValues);
                     
                 }
             });
